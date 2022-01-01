@@ -20,4 +20,4 @@ ETHBODY = {}
 BTCBODY = {}
 arprd = 0
 arprh = 0
-amp = 0.001
+amp = 0.002

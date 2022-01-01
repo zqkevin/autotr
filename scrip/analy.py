@@ -1,20 +1,21 @@
-import time
-from scrip import wdglob
-def wave(p1,p2):
-    try:
-        con = round((p2 - p1)/p2, 4)
-        if con >= wdglob.amp:
+import log
+from scrip import database, wdglob
 
+
+def wave(p):
+    try:
+        priceb = float(p['last'])
+        pricenow = float(wdglob.ETHBODY['last'])
+        con = round((pricenow - priceb)/pricenow, 4)
+        if con >= wdglob.amp:
+            database.recordanaly(p, 'sell')  # 记录触发数据
             return 1 #做空头sell
         elif con <= -wdglob.amp:
-
+            database.recordanaly(p, 'buy')
             return 0  # 做多头buy
         else:
             return 'pass'
-    except:
-        print('err')
-        return 'err'
+    except Exception as e:
+        log.err(e)
+        pass
 
-def start(p1,p2):
-    a = wave(p1,p2)
-    return a

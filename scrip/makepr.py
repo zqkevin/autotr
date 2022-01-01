@@ -1,8 +1,8 @@
-from scrip import wdglob
+from scrip import wdglob, binance
 import okex_http2.Market_api as Market
 import numpy as np
 import time
-
+import log
 marketAPI = Market.MarketAPI(api_key='', api_secret_key='', passphrase='', flag='0')
 # 获取30日价格均价和24小时均价
 def arp():
@@ -33,25 +33,54 @@ def arp():
 def dticker():
     request = marketAPI.get_ticker
     x = 0
-    while x < 10:
+    while x < 3:
         try:
             parameters = 'ETH-USDT'
             result = request(parameters)
-            boby = result['data'][0]
-            #print('ETH:',boby['last'])
-            wdglob.ETHBODY = boby
-            time.sleep(1)
+            if result['data'][0]:
+                wdglob.ETHBODY = result['data'][0]
+        except Exception as e:
+            log.err(e)
+            time.sleep(0.5)
+            x = x + 1
+            continue
+        time.sleep(0.5)
+        try:
             parameters = 'BTC-USDT'
             result = request(parameters)
-            boby = result['data'][0]
-            #print('BTC:',boby['last'])
-            wdglob.BTCBODY = boby
-            return boby
-        except:
+            if result['data'][0]:
+                wdglob.BTCBODY = result['data'][0]
+                return True
+        except Exception as e:
+            log.err(e)
+            time.sleep(2)
             x = x + 1
-            print('timeout,retry ', x)
+            continue
+    print('切换平台尝试获取')
+    y = 0
+    while y < 3:
+        try:
+            re = binance.getprice('ETHUSDT')
+            if re:
+                wdglob.ETHBODY['lsat'] = re.lastPrice
+                wdglob.ETHBODY['lastSz'] = re.lastQty
+                wdglob.ETHBODY['vol24h'] = re.volume
+                rb = binance.getprice('BTCUSDT')
+                if rb:
+                    wdglob.BTCBODY['lsat'] = re.lastPrice
+                    wdglob.BTCBODY['lastSz'] = re.lastQty
+                    wdglob.BTCBODY['vol24h'] = re.volume
+                    return True
+            else:
+                time.sleep(0.5)
+                y = y + 1
+                continue
+        except Exception as e:
+            y = y + 1
             time.sleep(2)
             continue
+
+    print('网络无法连接')
     return False
 
 
