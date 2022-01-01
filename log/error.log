@@ -1,0 +1,115 @@
+2022-01-01 15:15:26,290 -analy.py: 19 - ERROR: 'last'
+2022-01-01 15:15:31,291 -analy.py: 19 - ERROR: 'last'
+2022-01-01 15:15:36,291 -analy.py: 19 - ERROR: 'last'
+2022-01-01 15:15:41,292 -analy.py: 19 - ERROR: 'last'
+2022-01-01 18:00:55,295 -database.py: 48 - ERROR: 'NoneType' object is not subscriptable
+2022-01-01 19:23:12,192 -makepr.py: 54 - ERROR: The read operation timed out
+2022-01-01 20:41:12,842 -makepr.py: 54 - ERROR: The read operation timed out
+2022-01-01 20:52:30,135 -makepr.py: 43 - ERROR: The read operation timed out
+2022-01-01 21:25:46,420 -makepr.py: 43 - ERROR: <ConnectionTerminated error_code:ErrorCodes.NO_ERROR, last_stream_id:19999, additional_data:None>
+2022-01-01 21:25:46,423 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:25:46,426 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:25:49,148 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:25:49,149 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:25:49,151 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:25:51,850 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:25:51,851 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:25:51,851 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:25:54,596 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:25:54,598 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:25:54,600 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:25:57,476 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:25:57,478 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:25:57,480 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:00,325 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:00,326 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:00,327 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:03,086 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:03,088 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:03,090 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:05,936 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:05,938 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:05,939 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:08,575 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:08,578 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:08,581 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:11,309 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:11,311 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:11,314 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:14,365 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:14,366 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:14,366 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:17,193 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:17,195 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:17,197 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:20,012 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:20,013 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:20,014 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:22,755 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:22,757 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:22,758 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:25,850 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:25,852 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:25,854 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:28,619 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:28,621 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:28,623 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:31,279 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:31,281 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:31,283 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:33,987 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:33,990 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:33,992 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:37,023 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:37,025 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:37,028 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:39,782 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:39,784 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:39,786 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:42,735 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:42,738 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:42,740 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:45,476 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:45,478 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:45,479 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:48,532 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:48,533 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:48,534 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:51,228 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:51,229 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:51,232 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:53,948 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:53,950 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:53,952 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:56,619 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:56,621 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:56,623 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:59,349 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:59,351 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:26:59,353 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:27:02,243 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:27:02,246 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:27:02,247 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:27:05,104 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:27:05,106 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:27:05,108 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:27:07,942 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:27:07,943 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:27:07,944 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:27:10,657 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:27:10,659 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:27:10,661 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:27:13,425 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:27:13,427 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:27:13,428 -makepr.py: 43 - ERROR: Invalid input ConnectionInputs.SEND_HEADERS in state ConnectionState.CLOSED
+2022-01-01 21:43:11,563 -binance.py: 179 - ERROR: unsupported operand type(s) for -: 'datetime.datetime' and 'NoneType'
+2022-01-01 22:36:06,345 -database.py: 48 - ERROR: 'datetime.datetime' object is not subscriptable
+2022-01-01 22:36:07,082 -binance.py: 179 - ERROR: This transaction is closed
+2022-01-01 22:39:53,463 -database.py: 48 - ERROR: 'datetime.datetime' object is not subscriptable
+2022-01-01 22:46:14,400 -binance.py: 179 - ERROR: (pymysql.err.OperationalError) (1292, "Incorrect datetime value: '1641042300000' for column 'opentime' at row 1")
+[SQL: INSERT INTO ethusdt1m (opentime, openpr, hightpr, lowpr, closepr, bustur, closetime, busvolu, busnum, actbustur, actbusvolu) VALUES (%(opentime)s, %(openpr)s, %(hightpr)s, %(lowpr)s, %(closepr)s, %(bustur)s, %(closetime)s, %(busvolu)s, %(busnum)s, %(actbustur)s, %(actbusvolu)s)]
+[parameters: {'opentime': 1641042300000, 'openpr': 3712.8, 'hightpr': 3712.81, 'lowpr': 3710.23, 'closepr': 3711.28, 'bustur': 1860571.43471, 'closetime': 1641042359999, 'busvolu': 847, 'busnum': '501.300', 'actbustur': 162.227, 'actbusvolu': 602068.14504}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+2022-01-01 23:01:26,726 -database.py: 48 - ERROR: 'datetime.datetime' object is not subscriptable
+2022-01-01 23:01:27,407 -binance.py: 179 - ERROR: This transaction is closed
+2022-01-01 23:32:01,443 -database.py: 48 - ERROR: 'datetime.datetime' object is not subscriptable
