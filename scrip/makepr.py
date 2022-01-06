@@ -3,7 +3,10 @@ import okex_http2.Market_api as Market
 import numpy as np
 import time
 import log
+
 marketAPI = Market.MarketAPI(api_key='', api_secret_key='', passphrase='', flag='0')
+
+
 # 获取30日价格均价和24小时均价
 def arp():
     x = 0
@@ -31,37 +34,33 @@ def arp():
 
 # 获取ETH和BTC的市场实时价格
 def dticker():
-    request = marketAPI.get_ticker
-    x = 0
-    while x < 3:
-        try:
+    try:
+        request = marketAPI.get_ticker
+        x = 0
+        while x < 3:
             parameters = 'ETH-USDT'
             result = request(parameters)
             if result['data'][0]:
                 wdglob.ETHBODY = result['data'][0]
-        except Exception as e:
-            log.err(e)
-            time.sleep(0.5)
-            x = x + 1
-            continue
-        time.sleep(0.5)
-        try:
-            parameters = 'BTC-USDT'
-            result = request(parameters)
-            if result['data'][0]:
-                wdglob.BTCBODY = result['data'][0]
-                return True
-        except Exception as e:
-            log.err(e)
-            time.sleep(2)
-            x = x + 1
-            continue
-    print('切换平台尝试获取')
-    y = 0
-    while y < 3:
-        try:
+                time.sleep(0.5)
+                parameters = 'BTC-USDT'
+                result = request(parameters)
+                if result['data'][0]:
+                    wdglob.BTCBODY = result['data'][0]
+                    return True
+                else:
+                    time.sleep(2)
+                    x = x + 1
+                    continue
+            else:
+                x = x + 1
+                time.sleep(0.5)
+        log.info('切换平台尝试获取')
+        y = 0
+        while y < 3:
             re = binance.getprice('ETHUSDT')
             if re:
+                time.sleep(0.5)
                 wdglob.ETHBODY['lsat'] = re.lastPrice
                 wdglob.ETHBODY['lastSz'] = re.lastQty
                 wdglob.ETHBODY['vol24h'] = re.volume
@@ -71,17 +70,17 @@ def dticker():
                     wdglob.BTCBODY['lastSz'] = re.lastQty
                     wdglob.BTCBODY['vol24h'] = re.volume
                     return True
+                else:
+                    time.sleep(0.5)
+                    y = y + 1
+                    continue
             else:
                 time.sleep(0.5)
                 y = y + 1
                 continue
-        except Exception as e:
-            y = y + 1
-            time.sleep(2)
-            continue
-
-    print('网络无法连接')
-    return False
+    except Exception as e:
+        log.err('网络无法连接:%s'%e)
+        return False
 
 
 

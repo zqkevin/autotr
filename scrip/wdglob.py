@@ -18,6 +18,10 @@
 # 如果是币币/币币杠杆，数值为交易货币的数量。
 ETHBODY = {}
 BTCBODY = {}
-arprd = 0
-arprh = 0
-amp = 0.002
+
+arprd = 0  # 30天均线价格
+arprh = 0  # 24小时均价
+amp = 0.002  # 判断基数
+check = 0   # 校准参数
+binanceserver = 1   # 平台状态
+okexserver = 1  # 平台状态

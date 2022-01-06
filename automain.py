@@ -8,7 +8,7 @@ import log
 
 exitFlag = 0
 threads = []
-check = 0
+
 
 class Threadmink(threading.Thread):
     def __init__(self, threadID, name):
@@ -38,6 +38,7 @@ class Threadticker(threading.Thread):
                 x = 0
             else:
                 x = x + 1
+                time.sleep(1)
                 continue
         log.info('获取市场价格失败，停止挂机')
         exitFlag = 1
@@ -51,6 +52,7 @@ class Threadanaly(threading.Thread):
         self.name = name
         self.inipr = inipr
     def run(self):
+
         global exitFlag
         log.info("开启线程：%s"%self.name)
         if self.inipr:
@@ -81,12 +83,12 @@ class Threadanaly(threading.Thread):
                 continue
             else:
                 # 每24小时对系统数值进行检查矫正
-                global check
+                check = wdglob.check
                 if nowhour == 6 and check == 0:
                     init()
-                    check = 8
-                else:
-                    check = 0
+                    wdglob.check = 1
+                elif nowhour != 6 and check == 1:
+                    wdglob.check = 0
                 continue
         log.info("退出线程：%s"%self.name)
 
@@ -110,6 +112,12 @@ def init():
         inipr['lastSz'] = a.asz
         inipr['vol24h'] = a.a24H
         inipr['ts'] = str(datetime.timestamp(a.atime))
+    okserver = okex.get_instruments()
+    if okserver:
+        if okserver['state'] == 'live':
+            wdglob.okexserver = 1
+        else:
+            wdglob.okexserver = 0
     log.info('%s----较准完毕！'%datetime.fromtimestamp(loatime))
     # 获取分钟K线数据到数据库
     # Threadmink(13,'mink').start()

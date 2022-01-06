@@ -12,7 +12,7 @@ pymysql.install_as_MySQLdb()
 
 
 # DBINIT
-db = create_engine('mysql://root:pety93033@localhost:3306/autotr', echo=False, pool_size=8, pool_recycle=60 * 30)
+db = create_engine('mysql://root:pety&93033@localhost:3306/autotr', echo=False, pool_size=8, pool_recycle=60 * 30)
 DbSession = sessionmaker(bind=db)
 session = DbSession()
 Base = declarative_base()
@@ -25,12 +25,19 @@ def finduser(flag=1):
     except Exception as e:
         log.err('查找用户连接失败;%s'%e)
         return False
-def recordorder(userid, ordertime, orderid, side, avgprice, origqty, status, fig, amount, pt):
-    order = models.Orders(userid=userid, ordertime=ordertime, orderid=orderid, side=side,
-                         avgprice=avgprice,  origqty=origqty, status=status, fig=fig, amount=amount, pt=pt)
+def recordorder(rt):
+    order = models.Orders(userid=rt['userid'], pt=rt['pt'],
+                          ordertime=rt['ordertime'], avgprice=rt['avgprice'],
+                          orderid=rt['orderid'], side=rt['side'],
+                          origqty=rt['origqty'], status=rt['status'],
+                          fig=rt['fig'], lever=rt['lever'],
+                          acc_ky=rt['acc_ky'], acc_zy=rt['acc_zy'],
+                          acc_wsx=rt['acc_wsx'], pos_ccl=rt['pos_ccl'],
+                          pos_ccj=rt['pos_ccj'], pos_side=rt['pos_side'],
+                          amount=rt['amount'])
     session.add(order)
     session.commit()
-    log.info('记录：userid = %s'%userid)
+    log.info('记录：userid = %s' % rt['userid'])
 
 def recordanaly(p,side):
     try:

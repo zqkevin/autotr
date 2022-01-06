@@ -16,6 +16,22 @@ def get_server_time():
         return re
     return False
 
+#获取交易产品基本信息 insttyp:
+# SPOT：币币
+# MARGIN：币币杠杆
+# SWAP：永续合约
+# FUTURES：交割合约
+# OPTION：期权
+def get_instruments(insttype='SWAP',instid='ETH-USDT'):
+    try:
+        publicAPI = Public.PublicAPI(api_key='', api_secret_key='', passphrase='')
+        request = publicAPI.get_instruments(instType=insttype, uly=instid)
+        if request['code'] == '0':
+            return request['data'][0]
+    except:
+        return False
+
+#交易下单函数
 def trade(tradeapi, parameters):
     try:
         x = 0
@@ -55,12 +71,20 @@ def get_ord(tradeapi, ordid, instid='ETH-USDT'):
                 a = int(a[0:10])
                 ordertime = datetime.fromtimestamp(a)
                 b['fillTime'] = ordertime
-                return b
+                re = {'ordertime': b['fillTime'],
+                      'orderid': b['ordId'],
+                      'side': b['side'],
+                      'avgprice': round(float(b['avgPx']),2),
+                      'origqty': round(float(b['accFillSz']),4),
+                      'status': b['state'],
+                      'fig': round(float(b['pnl']),2)
+                      }
+                return re
             else:
                 x = x + 1
                 continue
     except Exception as e:
-        print('查订单失败：', e)
+        log.err('查订单失败：%s'%e)
         return False
 
 # 查看杠杆信息

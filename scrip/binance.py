@@ -102,14 +102,26 @@ def getorder(request_client):
     return rt
 
 def getordered(request_client, ordid, symbol='ETHUSDT'):
-    try:
-        result = request_client.get_order(symbol=symbol, orderId=ordid)
-        #result.time = datetime.fromtimestamp(int(result.time / 1000))
-        result.updateTime = datetime.fromtimestamp(int(result.updateTime / 1000))
-        return result
-    except Exception as e:
-        log.err('确认bianace订单失败%s'%e)
-        return False
+    x = 0
+    while x < 3:
+        try:
+            result = request_client.get_order(symbol=symbol, orderId=ordid)
+            #result.time = datetime.fromtimestamp(int(result.time / 1000))
+            result.updateTime = datetime.fromtimestamp(int(result.updateTime / 1000))
+            re = {'ordertime':result.updateTime,
+                  'orderid':str(result.orderId),
+                  'side': result.side,
+                  'avgprice':result.avgPrice,
+                  'origqty':result.executedQty,
+                  'status': result.status,
+                  'fig':0}
+            return re
+        except Exception as e:
+            time.sleep(2)
+            x = x + 1
+            ex = e
+    log.err('确认bianace订单失败,订单号：%s，报错信息：%s'%(ordid, ex))
+    return False
 
 def getstick(symbol='ETHUSDT', interval="1m", starttime=None, endtime=None, limit=30):
 

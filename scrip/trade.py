@@ -2,7 +2,7 @@ import okex_http2.Trade_api as Trade
 import okex_http2.Account_api as Account
 from binance_f import RequestClient
 from scrip import database as db
-from scrip import okex, wdglob, binance
+from scrip import okex, wdglob, binance, accangly
 import log
 import threading
 thread = 1
@@ -28,16 +28,29 @@ def orderecord(tradelist):
             if a['pt'] == 'okex':
                 pt = 1
                 record = okex.get_ord(tradeapi=a['tradeapi'], ordid=a['ordid'])
-                db.recordorder(userid=a['userid'], ordertime=record['fillTime'], orderid=record['ordId'],
-                               side=record['side'], avgprice=round(float(record['avgPx']), 2), origqty=round(float(record['accFillSz']), 4),
-                               status=record['state'], fig=round(float(record['pnl']), 2), amount=a['amount'], pt=pt)
             elif a['pt'] == 'bianace':
                 pt = 2
                 record = binance.getordered(request_client=a['tradeapi'], ordid=a['ordid'])
 
-                db.recordorder(userid=a['userid'], ordertime=record.updateTime, orderid=str(record.orderId),
-                               side=record.side, avgprice=record.avgPrice, origqty=record.origQty, status=record.status,
-                               fig=0, amount=a['amount'], pt=pt)
+            rt = {'userid': a['userid'],
+                  'ordertime': record['ordertime'],
+                  'orderid': record['orderid'],
+                  'side': record['side'],
+                  'avgprice': record['avgprice'],
+                  'origqty': record['origqty'],
+                  'status': record['status'],
+                  'fig': record['fig'],
+                  'lever': a['acc']['lever'],
+                  'pt': pt,
+                  'acc_ky': a['acc']['acc_ky'],
+                  'acc_zy': a['acc']['acc_zy'],
+                  'amount': a['acc']['acc_zs'],
+                  'acc_wsx': a['acc']['acc_wsx'],
+                  'pos_ccl': a['acc']['pos_ccl'],
+                  'pos_ccj': a['acc']['pos_ccj'],
+                  'pos_side': a['acc']['pos_side']
+                  }
+            db.recordorder(rt)
             continue
         except Exception as e:
             log.err(e)
@@ -54,7 +67,7 @@ def oktrade(acc,side,tradeapi,share,user=''):
                 return False
         else:
             sz = round(sz / p, 4)
-        log.info( '进入交易:  %s %s %sETH 价格：%s'%(user, side, sz, wdglob.ETHBODY['last']))
+        log.info( '进入交易:  %s %s-USTD-ETH %s 价格：%s'%(user, side, sz, wdglob.ETHBODY['last']))
         parameters = {'side': side, 'sz': sz, 'ccy': 'USDT', 'px': '', 'instId': 'ETH-USDT', 'ordType': 'market',
                       'tdMode': 'cross'}
         order = okex.trade(tradeapi, parameters)
@@ -110,11 +123,12 @@ def runwave(side):
             if not acc:
                 log.info('账户信息错误')
                 continue
+            sz = accangly.wavesz(acc, a, side)
             # 进行交易
             ordid = oktrade(acc, side, tradeapi, share, name)
 
             if ordid:
-                odic = {'userid': userid, 'ordid': ordid, 'tradeapi': tradeapi, 'amount': acc['acc_zs'], 'pt': pt}
+                odic = {'userid': userid, 'ordid': ordid, 'tradeapi': tradeapi, 'acc': acc, 'pt': pt}
                 orderlist.append(odic)
             else:
                 continue
@@ -125,7 +139,7 @@ def runwave(side):
             # 进行交易
             ordid = biantrade(acc, side, request_client, share, name)
             if ordid:
-                odic = {'userid': userid, 'ordid': ordid, 'tradeapi': request_client, 'amount': acc['acc_zs'], 'pt': pt}
+                odic = {'userid': userid, 'ordid': ordid, 'tradeapi': request_client, 'acc': acc, 'pt': pt}
                 orderlist.append(odic)
             else:
                 continue

@@ -67,4 +67,11 @@ class Orders(Base):
     origqty = Column(Float)  # 成交数量
     status = Column(String(30))  # 订单状态
     fig = Column(Float)  # 盈亏
+    lever = Column(INT)  # 杠杆
+    acc_ky = Column(Float)  # 可用资金
+    acc_zy = Column(Float)  # 占用资金
+    acc_wsx = Column(Float)  # 未实现盈利
+    pos_ccl = Column(Float)  # 持仓量
+    pos_ccj = Column(Float)  # 持仓价
+    pos_side = Column(INT)  # 持仓方向
     amount = Column(Float)  # 资金总额
