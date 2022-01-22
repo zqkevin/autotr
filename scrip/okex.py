@@ -163,7 +163,7 @@ def get_balance(accountapi, parameters='USDT'):
                     if blanace['eq']:
                         acc_zs = round(float(blanace['eq']), 2)
                     else: acc_zs = 0
-                    acc_zs = round(float(blanace['eq']), 2)
+                    acc_zs = round(float(blanace['cashBal']), 2)
                     if blanace['frozenBal']:
                         acc_zy = round(float(blanace['frozenBal']), 2)
                     else: acc_zy = 0

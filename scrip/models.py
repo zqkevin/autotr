@@ -6,6 +6,7 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
+    userid = Column(INT)
     name = Column(String(20))
     username = Column(String(20))
     analy = Column(INT, default=0)
@@ -19,6 +20,8 @@ class User(Base):
     pt_passphrase = Column(String(128))
     pt_other = Column(String(128))
     flag = Column(INT, default=1)
+    touru = Column(INT, default=10)
+    fengxian = Column(INT, default=5)
 
 
 

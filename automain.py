@@ -1,7 +1,6 @@
 from scrip import wdglob, command, okex, analy, trade, makepr, models, binance
 from scrip.database import session
 from datetime import datetime
-
 import threading
 import time
 import log
@@ -93,11 +92,11 @@ class Threadanaly(threading.Thread):
         log.info("退出线程：%s"%self.name)
 
 def init():
-    servertime = int((okex.get_server_time())[0:10])
+    # servertime = int((okex.get_server_time())[0:10])
     loatime = int(time.time())
-    if abs(servertime - loatime) > 1:
-        log.info('本地时间与服务器有差，自动根据服务器时间进行调整')
-        command.onlinetime(servertime)
+    # if abs(servertime - loatime) > 1:
+    #     log.info('本地时间与服务器有差，自动根据服务器时间进行调整')
+    #     command.onlinetime(servertime)
     #计算30天均线价和24小时价
     arprd, arprh = makepr.arp()
     wdglob.arprd = arprd    # 30日均线价
