@@ -6,14 +6,14 @@ import logging
 from urllib import parse
 import urllib.parse
 
-from binance_f.base.printtime import PrintDate
-from binance_f.impl.utils.timeservice import get_current_timestamp
-from binance_f.impl.utils.urlparamsbuilder import UrlParamsBuilder
-from binance_f.impl.utils.apisignature import create_signature
-from binance_f.exception.binanceapiexception import BinanceApiException
-from binance_f.impl.utils import *
-from binance_f.base.printobject import *
-from binance_f.model.constant import *
+from scrip.binance_f.base.printtime import PrintDate
+from scrip.binance_f.impl.utils.timeservice import get_current_timestamp
+from scrip.binance_f.impl.utils.urlparamsbuilder import UrlParamsBuilder
+from scrip.binance_f.impl.utils.apisignature import create_signature
+from scrip.binance_f.exception.binanceapiexception import BinanceApiException
+from scrip.binance_f.impl.utils import *
+from scrip.binance_f.base.printobject import *
+from scrip.binance_f.model.constant import *
 # Key: ws, Value: connection
 websocket_connection_handler = dict()
 

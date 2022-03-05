@@ -1,2 +1,2 @@
-from binance_f.requestclient import RequestClient
-from binance_f.subscriptionclient import SubscriptionClient
+from scrip.binance_f.requestclient import RequestClient
+from scrip.binance_f.subscriptionclient import SubscriptionClient

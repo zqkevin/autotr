@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from sqlalchemy import Column, Integer, String, INT, Float, DateTime
-from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 class User(Base):
@@ -14,7 +13,7 @@ class User(Base):
     analy2 = Column(INT, default=0)
     share = Column(INT, default=100)
     pt_name = Column(String(128))
-    pt_flag = Column(INT)
+    pt_flag = Column(INT, default=0)
     pt_api_key = Column(String(128))
     pt_secret_key = Column(String(128))
     pt_passphrase = Column(String(128))
@@ -23,6 +22,25 @@ class User(Base):
     touru = Column(INT, default=10)
     fengxian = Column(INT, default=5)
 
+class User_status(Base):
+    __tablename__ = 'user_status'
+    id = Column(Integer, primary_key=True)
+    userid = Column(INT)
+    name = Column(String(20))
+    totalcapital = Column(Float, default=0)
+    totalpl = Column(Float, default=0)
+    ccl = Column(Float, default=0)
+    ccp = Column(Float, default=0)
+    lever = Column(INT, default=3)
+
+class User_change(Base):
+    __tablename__ = 'user_change'
+    id = Column(Integer, primary_key=True)
+    userid = Column(INT)
+    name = Column(String(20))
+    type = Column(String(20))
+    quantity = Column(Float, default=0)
+    time = Column(DateTime)
 
 
 class Analy(Base):
@@ -38,30 +56,11 @@ class Analy(Base):
     b24H = Column(Float)    # 前一次总交易量
     a24H = Column(Float)    # 本次总交易量
 
-
-
-
-class Ethusdt1m(Base):
-    __tablename__ = 'ethusdt1m'
-    id = Column(Integer, primary_key=True)
-    opentime = Column(DateTime)
-    openpr = Column(Float)
-    hightpr = Column(Float)
-    lowpr = Column(Float)
-    closepr = Column(Float)
-    bustur = Column(Float)
-    closetime = Column(DateTime)
-    busvolu = Column(Float)
-    busnum = Column(Integer)
-    actbustur = Column(Float)
-    actbusvolu = Column(Float)
-
-
 class Orders(Base):
     __tablename__ = 'orders'
     id = Column(Integer, primary_key=True)
     userid = Column(INT)  # 下单用户
-    pt = Column(INT)    # 使用平台 1:okex 2:bianace
+    pt = Column(INT)    # 使用平台 1:okex 2:bianace 3:belife
     ordertime = Column(DateTime)  # 成交时间
     avgprice = Column(Float)  # 成交均价
     orderid = Column(String(30))  # 订单id

@@ -1,1 +1,1 @@
-from binance_f.impl.restapirequest import RestApiRequest
+from scrip.binance_f.impl.restapirequest import RestApiRequest

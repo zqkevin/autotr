@@ -1,27 +1,11 @@
 # 市场价参数说明：
-# instType	String	产品类型
-# instId	String	产品ID
-# last	String	最新成交价
-# lastSz	String	最新成交的数量
-# askPx	String	卖一价
-# askSz	String	卖一价对应的数量
-# bidPx	String	买一价
-# bidSz	String	买一价对应的数量
-# open24h	String	24小时开盘价
-# high24h	String	24小时最高价
-# low24h	String	24小时最低价
-# volCcy24h	String	24小时成交量，以币为单位
-# 如果是衍生品合约，数值为交易货币的数量。
-# 如果是币币/币币杠杆，数值为计价货币的数量。
-# vol24h	String	24小时成交量，以张为单位
-# 如果是衍生品合约，数值为合约的张数。
-# 如果是币币/币币杠杆，数值为交易货币的数量。
-ETHBODY = {}
-BTCBODY = {}
-
+# p:市场价，pc:价格变动量， pcp:价格变动百分比，hp：最高价 lp：最低价 24hv:24小时成交量 ts是int 13,其他str
+ETHBODY = {'ts': 0, 'p': '0', 'pc': '0', 'pcp': '0', 'hp': '0', 'lp': '0', '24hv': '0'}
+BTCBODY = {'ts': 0, 'p': '0', 'pc': '0', 'pcp': '0', 'hp': '0', 'lp': '0', '24hv': '0'}
+lastanaly = {}
 arprd = 0  # 30天均线价格
 arprh = 0  # 24小时均价
-amp = 0.002  # 判断基数
+amp = 0.003  # 判断基数
 check = 0   # 校准参数
 binanceserver = 1   # 平台状态
 okexserver = 1  # 平台状态

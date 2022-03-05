@@ -1,5 +1,5 @@
 import json
-from binance_f.impl.utils.jsonwrapper import JsonWrapper
+from scrip.binance_f.impl.utils.jsonwrapper import JsonWrapper
 
 
 def parse_json_from_string(value):

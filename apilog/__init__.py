@@ -36,9 +36,9 @@ class Logger(object):
 
 path = os.path.dirname(__file__)
 file_time = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-info = Logger(path + '/infolog/' + file_time + '.info.log', level='info').logger.info
+info = Logger(path + file_time + '.info.log', level='info').logger.info
 
-err = Logger(path + '/errlog/' + file_time + '.error.log', level='error').logger.error
+err = Logger(path + file_time + '.error.log', level='error').logger.error
 
-acc = Logger(path + '/acclog/' + file_time + '.acc.log', level='warning').logger.warning
+acc = Logger(path + file_time + '.acc.log', level='warning').logger.warning
 

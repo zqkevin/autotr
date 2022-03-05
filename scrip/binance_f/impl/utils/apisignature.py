@@ -4,7 +4,7 @@ import hmac
 import datetime
 from urllib import parse
 import urllib.parse
-from binance_f.exception.binanceapiexception import BinanceApiException
+from scrip.binance_f.exception.binanceapiexception import BinanceApiException
 
 
 def create_signature(secret_key, builder):

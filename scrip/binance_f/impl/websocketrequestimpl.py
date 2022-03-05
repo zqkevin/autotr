@@ -1,12 +1,12 @@
 import time
-from binance_f.impl.websocketrequest import WebsocketRequest
-from binance_f.impl.utils.channels import *
-from binance_f.impl.utils.channelparser import ChannelParser
-from binance_f.impl.utils.timeservice import *
-from binance_f.impl.utils.inputchecker import *
-from binance_f.model import *
+from scrip.binance_f.impl.websocketrequest import WebsocketRequest
+from scrip.binance_f.impl.utils.channels import *
+from scrip.binance_f.impl.utils.channelparser import ChannelParser
+from scrip.binance_f.impl.utils.timeservice import *
+from scrip.binance_f.impl.utils.inputchecker import *
+from scrip.binance_f.model import *
 # For develop
-from binance_f.base.printobject import *
+from scrip.binance_f.base.printobject import *
 
 
 class WebsocketRequestImpl(object):

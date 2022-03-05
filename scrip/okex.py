@@ -163,7 +163,7 @@ def get_balance(accountapi, parameters='USDT'):
                     if blanace['eq']:
                         acc_zs = round(float(blanace['eq']), 2)
                     else: acc_zs = 0
-                    acc_zs = round(float(blanace['cashBal']), 2)
+                    #acc_zs = round(float(blanace['cashBal']), 2)
                     if blanace['frozenBal']:
                         acc_zy = round(float(blanace['frozenBal']), 2)
                     else: acc_zy = 0
@@ -196,7 +196,7 @@ def get_balance(accountapi, parameters='USDT'):
                             'acc_zs': acc_zs,  # 总金额
                             'acc_zy': acc_zy,  # 持仓占用金额
                             'acc_wsx': acc_wsx,  # 未实现盈利
-                            'pos_ccl': pos_ccl,  # 持仓量多头为ETH，多头为USDT
+                            'pos_ccl': pos_ccl,  # 持仓量多头为ETH，空头为USDT
                             'pos_side': pos_side,  # 当前持仓方向 0 为多头 1 为空头
                             'pos_ccj': pos_ccj,  # 持仓价
                             'pos_wsxl': pos_wsxl  # 未实现盈利

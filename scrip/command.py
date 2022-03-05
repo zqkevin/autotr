@@ -1,32 +1,37 @@
-import sys, os, pytz
+import sys, os
+from scrip import binance, okex
+import time
+
 import log
 from datetime import datetime
 
 def servertime(stime):
     now = datetime.now()
-    now = datetime.strftime(now,'%Y-%m-%d %H:%M:%S')
-    log.info('现在时间是：%s'%now)
-
-    ti = datetime.fromtimestamp(stime, pytz.timezone('Asia/Shanghai'))
-    sy = sys.platform
-    if sy == 'win32':
-        dat = "date %u-%02u-%02u" % (ti.year, ti.month, ti.day)
-        tm = "time %02u:%02u:%02u" % (ti.hour,ti.minute,ti.second)
-        os.system(dat)
-        os.system(tm)
-        now = datetime.now()
-        now = datetime.strftime(now, '%Y-%m-%d %H:%M:%S')
-        log.info('更新后的时间是：%s'%now)
+    loatime = int(datetime.timestamp(now))
+    r = abs(stime - loatime)
+    if r > 500:
+        now = datetime.strftime(now,'%Y-%m-%d %H:%M:%S')
+        log.info('现在时间是：%s'%now)
+        ti = datetime.fromtimestamp(stime)
+        sy = sys.platform
+        if sy == 'win32':
+            dat = "date %u-%02u-%02u" % (ti.year, ti.month, ti.day)
+            tm = "time %02u:%02u:%02u" % (ti.hour, ti.minute, ti.second)
+            os.system(dat)
+            os.system(tm)
+            now = datetime.now()
+            now = datetime.strftime(now, '%Y-%m-%d %H:%M:%S')
+            log.info('更新后的时间是：%s'%now)
+        else:
+            tm = time.strftime('%Y-%m-%d %H:%M:%S', ti)
+            command = 'date -s' + ' "{}"'.format(tm)
+            os.system(command)
+            now = datetime.now()
+            now = datetime.strftime(now, '%Y-%m-%d %H:%M:%S')
+            log.info('更新后的时间是：%s'%now)
+        return True
     else:
-        pass
-        # tm='date -s "%u-%u-%u %u:%u:%u"'%(ti.year, ti.month, ti.day, ti.hour,ti.minute,ti.second)
-        # hw="/sbin/clock -w"
-        # os.system(tm)
-        # os.system(hw)
-        # now = datetime.now()
-        # now = datetime.strftime(now, '%Y-%m-%d %H:%M:%S')
-        # log.info('更新后的时间是：%s'%now)
-    return
+        return False
 
 def to_dict(objj):
     is_list = objj.__class__ == [].__class__

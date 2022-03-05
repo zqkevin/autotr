@@ -1,15 +1,15 @@
 import urllib.parse
 
-from binance_f.constant.system import WebSocketDefine
-from binance_f.impl.websocketrequestimpl import WebsocketRequestImpl
-from binance_f.impl.websocketconnection import WebsocketConnection
-from binance_f.impl.websocketwatchdog import WebSocketWatchDog
-from binance_f.impl.restapirequestimpl import RestApiRequestImpl
-from binance_f.model import *
-from binance_f.model.constant import *
+from scrip.binance_f.constant.system import WebSocketDefine
+from scrip.binance_f.impl.websocketrequestimpl import WebsocketRequestImpl
+from scrip.binance_f.impl.websocketconnection import WebsocketConnection
+from scrip.binance_f.impl.websocketwatchdog import WebSocketWatchDog
+from scrip.binance_f.impl.restapirequestimpl import RestApiRequestImpl
+from scrip.binance_f.model import *
+from scrip.binance_f.model.constant import *
 
 # For develop
-from binance_f.base.printobject import *
+from scrip.binance_f.base.printobject import *
 
 class SubscriptionClient(object):
 

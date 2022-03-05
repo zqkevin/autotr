@@ -1,9 +1,9 @@
 import time
 import okex_http2.Trade_api as Trade
 import okex_http2.Account_api as Account
-from binance_f import RequestClient
+from scrip.binance_f import RequestClient
 from scrip import database as db
-from scrip import okex, wdglob, binance, accangly
+from scrip import okex, wdglob, binance, accangly, bf
 import log
 import threading
 thread = 1
@@ -14,7 +14,6 @@ class Threadrecord(threading.Thread):
         self.name = name
         self.orderlist = orderlist
     def run(self):
-        global exitFlag
         orderecord(self.orderlist)
 
 
@@ -24,6 +23,7 @@ class Threadrecord(threading.Thread):
 #                           fig=ordered['pnl'], amount=amount)
 
 def orderecord(tradelist):
+    p = float(wdglob.ETHBODY['p'])
     for a in tradelist:
         try:
             if a['pt'] == 'okex':
@@ -32,7 +32,13 @@ def orderecord(tradelist):
             elif a['pt'] == 'bianace':
                 pt = 2
                 record = binance.getordered(request_client=a['tradeapi'], ordid=a['ordid'])
-            fig = a['acc']['acc_zs'] - a['beacc']['acc_zs']
+                sz = record['origqty']
+                fig = db.upuser_status(userid=a['userid'], p=record['avgprice'], sz=sz, side=record['side'], acc=a['acc'])
+            elif a['pt'] == 'bf':
+                pt = 3
+                record = a['record']
+                fig = db.upuser_status(userid=a['userid'], p=record['avgprice'], sz=record['origqty'], side=record['side'],acc=a['acc'])
+
             rt = {'userid': a['userid'],
                   'ordertime': record['ordertime'],
                   'orderid': record['orderid'],
@@ -59,7 +65,7 @@ def orderecord(tradelist):
 
 def oktrade(sz, side, tradeapi):
     try:
-        p = wdglob.ETHBODY['last']
+        p = float(wdglob.ETHBODY['p'])
         if side == 'buy':
             parameters = {'side': side, 'sz': sz, 'ccy': 'USDT', 'px': '', 'instId': 'ETH-USDT', 'ordType': 'market',
                           'tdMode': 'cross'}
@@ -73,13 +79,15 @@ def oktrade(sz, side, tradeapi):
             log.info('okex下单成功！')
             return order['ordId']
         else:
+            log.info('okex下单失败%s'%order)
             return False
-    except:
+    except Exception as e:
+        log.err('okex下单失败%s'%e)
         return False
 
 def biantrade(sz, side, request_client):
     try:
-        p = float(wdglob.ETHBODY['last'])
+        p = float(wdglob.ETHBODY['p'])
         sz = round(sz / p, 3)
         if side == 'sell':
             side = 'SELL'
@@ -89,9 +97,10 @@ def biantrade(sz, side, request_client):
         if order:
             return order.orderId
         else:
+            log.info('binance下单失败%s' % order)
             return False
     except Exception as e:
-        print(e)
+        log.err('bianace下单失败%s'%e)
         return False
 
 def runwave(side):
@@ -105,26 +114,21 @@ def runwave(side):
         api_key = a.pt_api_key
         secret_key = a.pt_secret_key
         passphrase = a.pt_passphrase
-        share = a.share
-        name = a.name
         pt = a.pt_name
         if pt == 'okex':
             accountapi = Account.AccountAPI(api_key, secret_key, passphrase, False, flag='0')
             tradeapi = Trade.TradeAPI(api_key, secret_key, passphrase, False, flag='0')
             # 获取账户信息
-            beacc = okex.get_balance(accountapi)
-            if not beacc:
+            acc = okex.get_balance(accountapi)
+            if not acc:
                 log.info('账户信息错误')
                 continue
-            jysz = accangly.wavesz(beacc, a, side)
+            jysz = accangly.wavesz(acc, a, side)
             if jysz:
                 # 进行交易
-                log.info('进入okex交易:  %s %s-USTD-ETH %s 价格：%s' % (a.name, side, jysz, wdglob.ETHBODY['last']))
                 ordid = oktrade(sz=jysz, side=side, tradeapi=tradeapi)
                 if ordid:
-                    time.sleep(0.5)
-                    acc = okex.get_balance(accountapi)
-                    odic = {'userid': userid, 'ordid': ordid, 'tradeapi': tradeapi, 'acc': acc, 'beacc': beacc, 'pt': pt}
+                    odic = {'userid': userid, 'ordid': ordid, 'tradeapi': tradeapi, 'acc': acc, 'pt': pt}
                     orderlist.append(odic)
                 else:
                     continue
@@ -133,24 +137,29 @@ def runwave(side):
         elif pt == 'bianace':
             request_client = RequestClient(api_key=api_key, secret_key=secret_key)
             # 获取账户信息
-            beacc = binance.getacc(request_client)
-            if not beacc:
-                log.info('账户信息错误')
+            acc = binance.getacc(request_client)
+            if not acc:
+                log.err('账户信息错误')
                 continue
             # 进行交易
-            jysz = accangly.wavesz(beacc, a, side)
+            jysz = accangly.wavesz(acc, a, side)
             if jysz:
-                log.info('进入okex交易:  %s %s-USTD-ETH %s 价格：%s' % (a.name, side, jysz, wdglob.ETHBODY['last']))
                 ordid = biantrade(sz=jysz, side=side, request_client=request_client)
                 if ordid:
-                    time.sleep(0.5)
-                    acc = binance.getacc(request_client)
-                    odic = {'userid': userid, 'ordid': ordid, 'tradeapi': request_client, 'acc': acc, 'beacc': beacc, 'pt': pt}
+                    odic = {'userid': userid, 'ordid': ordid, 'tradeapi': request_client, 'acc': acc, 'pt': pt}
                     orderlist.append(odic)
                 else:
                     continue
             else:
                 continue
+        elif pt == 'bf':
+            acc = bf.getacc(userid)
+            jysz = accangly.wavesz(acc, a, side)
+            log.info('进入bf交易，jysz = %s' % jysz)
+            record = bf.greatord(userid, jysz, side)
+            ordid = record['orderid']
+            odic = {'userid': userid, 'ordid': ordid, 'tradeapi': None, 'acc': acc, 'pt': pt, 'record': record}
+            orderlist.append(odic)
         else:
             continue
 

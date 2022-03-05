@@ -1,12 +1,12 @@
-from binance_f.impl import RestApiRequest
-from binance_f.impl.utils.urlparamsbuilder import UrlParamsBuilder
-from binance_f.impl.utils.apisignature import create_signature
-from binance_f.impl.utils.apisignature import create_signature_with_query
-from binance_f.impl.utils.inputchecker import *
-from binance_f.impl.utils.timeservice import *
-from binance_f.model import *
+from scrip.binance_f.impl import RestApiRequest
+from scrip.binance_f.impl.utils.urlparamsbuilder import UrlParamsBuilder
+from scrip.binance_f.impl.utils.apisignature import create_signature
+from scrip.binance_f.impl.utils.apisignature import create_signature_with_query
+from scrip.binance_f.impl.utils.inputchecker import *
+from scrip.binance_f.impl.utils.timeservice import *
+from scrip.binance_f.model import *
 # For develop
-from binance_f.base.printobject import *
+from scrip.binance_f.base.printobject import *
 
 
 class RestApiRequestImpl(object):

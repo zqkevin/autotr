@@ -1,5 +1,5 @@
 import json
-from binance_f.exception.binanceapiexception import BinanceApiException
+from scrip.binance_f.exception.binanceapiexception import BinanceApiException
 
 class JsonWrapper:
     def __init__(self, json_object):

@@ -1,11 +1,15 @@
 from scrip import database
-from scrip.models import User, Ethusdt1m
-from binance_f import RequestClient
+from scrip.binance_f import RequestClient
 from datetime import datetime
-import time, log, pytz
+import time, log
 
-
-
+def get_server_time():
+    try:
+        request_client = RequestClient(api_key='', secret_key='')
+        result = request_client.get_servertime()
+        return result
+    except:
+        return False
 
 def getprice(symbol='ETHUSDT'):
     try:
@@ -24,9 +28,7 @@ def getpostion(request_client, symbol='ETHUSDT'):
     time.sleep(0.5)
     return result
 
-
 def getacc(request_client):
-
     try:
         x = 0
         while x < 3:
@@ -39,7 +41,7 @@ def getacc(request_client):
                         acc_zy = acc_zs - acc_ky
                         result = request_client.get_position_v2(symbol='ETHUSDT')[0]
                         if result:
-                            pos_ccl = round(abs(result.positionAmt), 4)
+                            pos_ccl = round(result.positionAmt, 4)
                             pos_ccj = round(result.entryPrice, 2)
                             if result.positionAmt >= 0:
                                 pos_side = 0  # 多头
@@ -71,7 +73,6 @@ def getacc(request_client):
     except Exception as e:
         log.err(e)
         return False
-
 # 交易
 def trade(request_client, quantity, price, side, symbol="ETHUSDT", ordertype="LIMIT", timeInForce="GTC"):
     try:
@@ -119,11 +120,11 @@ def getordered(request_client, ordid, symbol='ETHUSDT'):
         except Exception as e:
             time.sleep(2)
             x = x + 1
-            ex = e
-    log.err('确认bianace订单失败,订单号：%s，报错信息：%s'%(ordid, ex))
+            continue
+    log.err('确认bianace订单失败,订单号：%s，报错信息：%s'%(ordid, e))
     return False
 
-def getstick(symbol='ETHUSDT', interval="1m", starttime=None, endtime=None, limit=30):
+def getstick(symbol='ETHUSDT', interval="1d", starttime=None, endtime=None, limit=30):
 
     if isinstance(starttime,str):
         starttime = datetime.strptime(starttime,'%Y-%m-%dT%H:%M')
@@ -158,7 +159,7 @@ def getstick(symbol='ETHUSDT', interval="1m", starttime=None, endtime=None, limi
     # print("======================================")
     time.sleep(0.5)
     return rt
-
+# getstick(symbol='ETHUSDT', interval="1h", starttime=None, endtime=None, limit=24)
 
 
 def geteth1m():

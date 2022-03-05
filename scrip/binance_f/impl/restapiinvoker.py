@@ -1,9 +1,9 @@
-# from binance_f.base.printobject import *
+# from scrip.binance_f.base.printobject import *
 import logging
 
 import requests
-from binance_f.exception.binanceapiexception import BinanceApiException
-from binance_f.impl.utils import *
+from scrip.binance_f.exception.binanceapiexception import BinanceApiException
+from scrip.binance_f.impl.utils import *
 
 logger = logging.getLogger("binance-client")
 

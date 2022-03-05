@@ -2,6 +2,7 @@
 import time
 import log
 import pymysql
+from config import DATABASE_URI
 from datetime import datetime
 from sqlalchemy import and_, or_
 from sqlalchemy import create_engine
@@ -12,11 +13,67 @@ pymysql.install_as_MySQLdb()
 
 
 # DBINIT
-db = create_engine('mysql://root:pety&93033@localhost:3306/autotr', echo=False, pool_size=8, pool_recycle=60 * 30)
+db = create_engine(DATABASE_URI, echo=False, pool_size=8, pool_recycle=60 * 30)
 DbSession = sessionmaker(bind=db)
 session = DbSession()
 Base = declarative_base()
 
+def lastanyle():
+    analy = models.Analy
+    b = session.query(analy).count()
+    return session.query(analy).filter(analy.id == b).first()
+
+def upuser_status(userid, p, sz, side, acc):
+    update = session.query(models.User_status).filter_by(userid=userid).first()
+    if update:
+        old_totalcapital = update.totalcapital
+        old_ccp = update.ccp
+        old_ccl = update.ccl
+        if side == 'sell' or 'SELL':
+            update.ccl = old_ccl - sz
+            if update.ccl > 0 and old_ccl > 0:
+                fig = (p - old_ccp) * sz * (1 - 0.001)
+            elif old_ccl < 0 and update.ccl < 0:
+                fig = -sz * p * 0.001
+            else:
+                fig = (p-old_ccp) * old_ccl * (1 - 0.001)
+        else:
+            update.ccl = old_ccl + sz
+            if update.ccl < 0 and old_ccl < 0:
+                fig = (p - old_ccp) * sz * (1 - 0.001)
+            elif update.ccl > 0 and old_ccl > 0:
+                fig = -sz * p * 0.001
+            else:
+                fig = (p - old_ccp) * old_ccl * (1 - 0.001)
+        update.ccp = (old_ccp * abs(old_ccl) + sz * p) / (abs(old_ccl) + sz)
+        update.totalcapital = old_totalcapital + fig
+        update.totalpl = update.totalpl + fig
+        session.commit()
+        return fig
+    else:
+        adduser = models.User_status()
+        adduser.userid = userid
+        adduser.name = userid
+        adduser.totalcapital = acc['acc_zs']
+        adduser.totalpl = 0
+        adduser.ccl = acc['pos_ccl']
+        adduser.ccp = acc['pos_ccj']
+        adduser.lever = acc['lever']
+        session.add(adduser)
+        session.commit()
+        fig = 0
+        return fig
+
+def getbfacc(userid):
+    re = session.query(models.User_status).filter_by(userid=userid).first()
+    return re
+
+def getbford(userid):
+    re = session.query(models.Orders).filter(models.Orders.userid == userid).order_by(models.Orders.id.desc()).first()
+    if not re:
+        re = models.Orders
+        re.orderid = "1"
+    return re
 
 def finduser(flag=1):
     try:
@@ -39,16 +96,16 @@ def recordorder(rt):
     session.commit()
     log.info('记录：userid = %s' % rt['userid'])
 
-def recordanaly(p,side):
+def recordanaly(p, nowp, side):
     try:
         bp = p
-        ap = wdglob.ETHBODY
+        ap = nowp
         a = ap['ts']
-        atime = int(a[0:10])
+        atime = int(a/1000)
         b = bp['ts']
-        btime = int(b[0:10])
-        analy = models.Analy(btime = datetime.fromtimestamp(btime), atime = datetime.fromtimestamp(atime), side = side,  bprice = float(bp['last']), aprice = float(ap['last']),
-                             bsz = float(bp['lastSz']), asz = float(ap['lastSz']), b24H = float(bp['vol24h']), a24H = float(ap['vol24h']))
+        btime = int(b/1000)
+        analy = models.Analy(btime = datetime.fromtimestamp(btime), atime = datetime.fromtimestamp(atime), side = side,  bprice = float(bp['p']), aprice = float(ap['p']),
+                             bsz = float(bp['pc']), asz = float(ap['pc']), b24H = float(bp['24hv']), a24H = float(ap['24hv']))
         session.add(analy)
         session.commit()
     except Exception as e:
@@ -72,12 +129,6 @@ def pos_save1m(res):
     session.commit()
     return lasttime
 
-def test():
-    import makepr
-    p = makepr.dticker()
-    time.sleep(5)
-    b = makepr.dticker()
-    recordanaly(p,'buy')
-    print('ok order')
+
 
 

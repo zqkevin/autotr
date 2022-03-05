@@ -1,6 +1,6 @@
 import json
-from binance_f.impl.utils.timeservice import get_current_timestamp
-from binance_f.model import DepthStep
+from scrip.binance_f.impl.utils.timeservice import get_current_timestamp
+from scrip.binance_f.model import DepthStep
 
 
 def aggregate_trade_channel(symbol):
